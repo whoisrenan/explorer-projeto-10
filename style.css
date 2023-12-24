@@ -75,6 +75,14 @@ ul li.active {
   object-fit: cover;
   border-radius: 50%;
 } */
+.avatar {
+  filter: grayscale(1);
+}
+.avatar:hover {
+  filter: hue-rotate(10deg) contrast(101%) saturate(150%);
+  transform: scale(1.1) rotate(2deg);
+  cursor: pointer;
+}
 .container {
   padding: 1.6rem 3.2rem;
   width: min(112rem, 100%);
@@ -97,16 +105,28 @@ main h1 {
 }
 .item {
   background-color: var(--color-base-white);
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   overflow: hidden;
 }
 .item img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
+  filter: grayscale(1);
+  transition: all 200ms ease-out;
+
+  display: block;
+}
+.item img:hover {
+  filter: hue-rotate(10deg) contrast(101%) saturate(200%);
+  transform: scale(1.1) rotate(2deg);
+  cursor: pointer;
 }
 .details {
   padding: 2.2rem;
+  background-color: var(--color-base-white);
+  z-index: 1;
+  position: relative;
 }
 .details h2 {
   font-size: 1.8rem;
@@ -115,9 +135,9 @@ main h1 {
   margin-top: 1.2rem;
 }
 .tags span {
-  padding: .6rem;
+  padding: 0.6rem;
   background-color: var(--color-base-gray-100);
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   line-height: 0;
   font-size: 1.2rem;
   text-transform: uppercase;
@@ -126,4 +146,33 @@ footer p {
   text-align: center;
   padding: 1.6rem;
   font-weight: 600;
+}
+/* aplicando animações no header e footer */
+header {
+  --startY: -100%;
+  animation: move 0.2s;
+}
+footer {
+  --startY: 100%;
+  animation: move 0.2s;
+}
+@keyframes move {
+  from {
+    transform: translateY(var(--startY));
+  }
+}
+/* aplicando animações na galeria de imagens */
+.item {
+  --delay: 0.4s;
+  animation: appear 0.4s var(--delay) backwards;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
 }
